@@ -1,0 +1,32 @@
+x-varblock: &uidblock
+  uid: "${UID:-1000}"
+
+services:
+  php-apache:
+    container_name: domain_history_php
+    build: 
+      args:
+        <<: *uidblock
+      context: .
+      dockerfile: "./docker/php-apache/Dockerfile"
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+
+  mysql:
+    image: 'mysql:9'
+    container_name: domain_history_mysql
+    environment:
+      - MYSQL_DATABASE=domain
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql:cached
+
+volumes:
+  mysql-data:
+    external: false
