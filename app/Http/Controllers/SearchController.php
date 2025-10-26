@@ -16,7 +16,7 @@ class SearchController extends Controller
             $results = Domain::where('name', 'LIKE', "%{$query}%")
                 ->paginate(10);
 
-            $results = $results->map(function($event) {
+            $results = $results->map(function ($event) {
                 return [
                     'name' => $event->name,
                     'last_updated' => $event->last_scanned,

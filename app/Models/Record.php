@@ -77,7 +77,8 @@ class Record extends Model
         return $rules;
     }
 
-    public function getRecords($type): array {
+    public function getRecords($type): array
+    {
         $result = [];
         $result['type'] = $this->type;
         $result['hostname'] = $this->hostname;
@@ -122,6 +123,7 @@ class Record extends Model
                 throw new TypeError("type '$type' does not exist");
                 break;
         }
+
         return $result;
     }
 }

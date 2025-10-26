@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
-use App\Models\Record;
 use App\Validators\DnsValidator;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
@@ -28,8 +27,8 @@ class DomainController extends Controller
             ->groupBy('hostname')
             ->map(function ($records, $hostname) {
                 return [
-                  'name' => $hostname,
-                  'count' => $records->count(),
+                    'name' => $hostname,
+                    'count' => $records->count(),
                 ];
             })->values();
 
@@ -68,7 +67,6 @@ class DomainController extends Controller
             ->where('type', $recordType)
             ->orderBy('last_seen', 'DESC')
             ->paginate(15);
-
 
         if ($records->isEmpty()) {
             abort(404, 'No records found');
@@ -132,8 +130,8 @@ class DomainController extends Controller
         $domain = Domain::where('name', $domain)->firstOrFail();
 
         $summary = $domain->records
-            ->where('hostname', $record) 
-            ->groupBy('type')           
+            ->where('hostname', $record)
+            ->groupBy('type')
             ->map(function ($records, $type) use ($record) {
                 return [
                     'hostname' => $record,
@@ -141,8 +139,7 @@ class DomainController extends Controller
                     'count' => $records->count(),
                 ];
             })
-            ->values(); 
-
+            ->values();
 
         if ($summary->isEmpty()) {
             abort(404, 'No records found');
