@@ -14,3 +14,4 @@ public/fullnames.txt
 resources/views/scribe
 .scribe
 node_modules
+.vite
