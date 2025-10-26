@@ -198,6 +198,25 @@ class RecordService
                             $domainRecord->records()->create($validatedData);
                         }
                         break;
+                    case RecordType::CAA:
+                        $lu->where('value', $record['value'])
+                            ->where('flags', $record['flags'])
+                            ->where('tag', $record['tag']);
+
+                        $returnedRecord = $lu->first();
+                        if ($returnedRecord) {
+                            $returnedRecord->update(['last_seen' => $lastSeen]);
+                        } else {
+                            $validator = Validator::make($record, RecordModel::rules($record['type']));
+                            if ($validator->fails()) {
+                                throw new ValidationException($validator);
+                            }
+                            // save the record
+                            $validatedData = $validator->validated();
+                            $validatedData['last_seen'] = $lastSeen;
+                            $domainRecord->records()->create($validatedData);
+                        }
+                        break;
                 }
             }
         }

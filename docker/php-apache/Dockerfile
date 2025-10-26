@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libzip-dev
+    libzip-dev \
+    nodejs \
+    npm
 
 RUN a2enmod rewrite
 

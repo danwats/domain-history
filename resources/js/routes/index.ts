@@ -1,6 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../wayfinder'
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +15,8 @@ home.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -22,7 +24,8 @@ home.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +34,8 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +44,8 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +54,8 @@ const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +64,8 @@ homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:6
+* @see \App\Http\Controllers\HomeController::home
+* @see app/Http/Controllers/HomeController.php:9
 * @route '/'
 */
 homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -72,3 +79,84 @@ homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 home.form = homeForm
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+export const search = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: search.url(options),
+    method: 'get',
+})
+
+search.definition = {
+    methods: ["get","head"],
+    url: '/search',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+search.url = (options?: RouteQueryOptions) => {
+    return search.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+search.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: search.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+search.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: search.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+const searchForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: search.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+searchForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: search.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\SearchController::search
+* @see app/Http/Controllers/SearchController.php:11
+* @route '/search'
+*/
+searchForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: search.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+search.form = searchForm
