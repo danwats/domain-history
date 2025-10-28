@@ -43,7 +43,7 @@ docker compose exec php-cli php artisan app:record-collector <domain>
 ```
 
 ## Project State
-Basic usage works this includes
+Basic usage works, this includes:
 
 Frontend:
 - Search domains
