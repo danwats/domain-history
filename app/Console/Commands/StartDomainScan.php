@@ -31,5 +31,7 @@ class StartDomainScan extends Command
             ScanDomainJob::dispatch($domain->id);
             $this->info("Starting scan for {$domain->id}");
         });
+
+        return Command::SUCCESS;
     }
 }

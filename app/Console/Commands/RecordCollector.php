@@ -42,5 +42,7 @@ class RecordCollector extends Command
                 $this->error("  $field: ".implode(', ', $messages));
             }
         }
+
+        return Command::SUCCESS;
     }
 }

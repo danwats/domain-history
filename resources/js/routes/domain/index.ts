@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 export const show = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 show.url = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ show.url = (args: { domain: string | number } | [domain: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 show.get = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -53,7 +53,7 @@ show.get = (args: { domain: string | number } | [domain: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 show.head = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -63,7 +63,7 @@ show.head = (args: { domain: string | number } | [domain: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 const showForm = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -73,7 +73,7 @@ const showForm = (args: { domain: string | number } | [domain: string | number ]
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 showForm.get = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -83,7 +83,7 @@ showForm.get = (args: { domain: string | number } | [domain: string | number ] |
 
 /**
 * @see \App\Http\Controllers\DomainController::show
-* @see app/Http/Controllers/DomainController.php:14
+* @see app/Http/Controllers/DomainController.php:13
 * @route '/history/domain/{domain}'
 */
 showForm.head = (args: { domain: string | number } | [domain: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

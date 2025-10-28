@@ -22,7 +22,7 @@ const HeroSearch = ({ children }: {children:  ReactNode}) => {
 
 const HeroRecords = ({ children }: {children:  ReactNode}) => {
     return (
-        <div className="relative bg-gray-900 min-w-screen min-h-screen p-10">
+        <div className="relative bg-gray-900 min-h-screen p-10">
             <div className="relative z-10 items-center justify-center h-full text-left px-4">
                 { children }
             </div>
