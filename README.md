@@ -23,6 +23,7 @@ This is in early alpha. A lot may change throughout.
 ### Dev
 
 ```
+cp .env.example .env
 docker compose build
 docker compose up -d
 docker compose exec php-cli php artisan key:generate
