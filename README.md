@@ -6,6 +6,16 @@ Collects DNS records that can be analysed and reviewed over time. Uses [Harveste
 
 This is in early alpha. A lot may change throughout.
 
+Here is a list of what works:
+
+Frontend:
+- Search domains
+- go through records and types with pagination
+
+Backend:
+- add domain in for collection
+- schedule domain scanning, will add a job, and will reschedule itself for scan (partial working)
+
 - [**Installation**](#installation)
     - [Dev](#dev)
     - [Production](#production)
