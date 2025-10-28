@@ -6,7 +6,7 @@ Collects DNS records that can be analysed and reviewed over time. Uses [Harveste
 
 This is in early alpha. A lot may change throughout.
 
-- [**Installation](#installation)
+- [**Installation**](#installation)
     - [Dev](#dev)
     - [Production](#production)
 
