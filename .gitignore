@@ -1,0 +1,17 @@
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+/.idea
+.DS_Store
+/database/.DS_Store
+/storage/mysql
+config.json
+public/fullnames.txt
+.phpunit.result.cache
+.phpunit.cache
+resources/views/scribe
+.scribe
+node_modules
+.vite
