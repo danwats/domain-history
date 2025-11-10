@@ -45,9 +45,6 @@ class DomainController extends Controller
                 ['label' => 'Domain', 'url' => null],
                 ['label' => $domain->name, 'url' => null],
             ],
-            'routes' => [
-                'recordShow' => route('recordtype.show', ['domain' => ':domain', 'record' => ':record']),
-            ],
             'weekly_data' => $weeklyData,
         ]);
     }
@@ -112,9 +109,6 @@ class DomainController extends Controller
                 ['label' => $record, 'url' => null],
                 ['label' => 'Record Types', 'url' => route('recordtype.show', [$domain->name, $record])],
                 ['label' => $recordTypeName, 'url' => null],
-            ],
-            'routes' => [
-                'paginate' => route('recordtype.showRecords', ['domain' => $domain->name, 'record' => $record, 'recordtype' => $recordTypeName]),
             ],
         ]);
     }

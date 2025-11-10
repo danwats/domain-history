@@ -1,32 +1,30 @@
 import { router } from '@inertiajs/react';
 import { HeroSearch } from '@/components/HeroHome';
 import { searchClass,searchButtonClass } from '@/components/HeroHomeVars';
+import { index } from '@/actions/App/Http/Controllers/SearchController';
+import { showDomain } from '@/actions/App/Http/Controllers/DomainController'
 
 interface ResultItem {
-  name: string;
-  last_updated: string;
+    name: string;
+    last_updated: string;
 }
 
 export default function Search({
     query,
     results,
-    routes,
 }: {
         query: string,
         results: ResultItem[],
-        routes: Record<string, string>,
     }) {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        router.get('/search', {
-            query: formData.get('query') as string
-        });
-    };
-
-    const buildUrl = (domain: string) => {
-        return routes.domain
-            .replace(':domain', domain)
+        router.get(
+            index({
+                query: {
+                    query: formData.get('query') as string
+                }
+            }).url);
     };
 
     if (!results) {
@@ -35,7 +33,7 @@ export default function Search({
                 <div id="search">
                     <form onSubmit={handleSubmit}>
                         <input 
-                        className={searchClass}
+                            className={searchClass}
                             type="text" 
                             name="query" 
                             defaultValue={query}
@@ -62,7 +60,7 @@ export default function Search({
                         defaultValue={query}
                         placeholder="Search..."
                     />
-                        <button className={searchButtonClass} type="submit" >
+                    <button className={searchButtonClass} type="submit" >
                         Search
                     </button>
 
@@ -71,14 +69,15 @@ export default function Search({
                     {results.length === 0 ? (
                         <p className="text-xl pt-10"> no results </p>
                     ) : (
-                        <div>
-                        <p className="text-xl pt-10"> Results: </p>
-                            {results?.map((item, index) => (
-                                <div key={index}>
-                                <a href={buildUrl(item.name)}>{item.name}</a>
-                                </div>
-                            ))}
-                        </div>
+                            <div>
+                                <p className="text-xl pt-10"> Results: </p>
+                                {results?.map((item, index) => (
+                                    <div key={index}>
+                                        <a href={showDomain([item.name]).url}>
+                                            {item.name}</a>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                 </div>
 

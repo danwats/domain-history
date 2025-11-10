@@ -1,5 +1,6 @@
 import { HeroRecords} from '@/components/HeroHome';
 import  GetBreadcrumbs, { Breadcrumbs } from '@/components/Breadcrumbs';
+import { showRecordTypes } from '@/actions/App/Http/Controllers/DomainController';
 
 import { Bar } from "react-chartjs-2";
 import {
@@ -34,7 +35,6 @@ interface Weekly {
 export default function DomainShow({
     domain,
     records,
-    routes,
     breadcrumbs,
     weekly_data,
 }: {
@@ -46,12 +46,6 @@ export default function DomainShow({
         breadcrumbs: Breadcrumbs[]
         weekly_data: Weekly
     }) {
-
-    const buildUrl = (domainName: string, recordName: string) => {
-        return routes.recordShow
-            .replace(':domain', domainName)
-            .replace(':record', recordName);
-    };
 
     // set up the chart
     const labels = weekly_data.map((d: WeeklyData) => d.date);
@@ -114,7 +108,7 @@ export default function DomainShow({
                 <nav className="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base text-white font-normal text-blue-gray-700">
                     <Bar data={data} options={options} />
                     {records.map(({name, count}) => (
-                        <a key={name} href={buildUrl(domain, name)}>
+                        <a key={name} href={showRecordTypes([domain, name]).url}>
                             <div
                                 role="button"
                                 className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start 
