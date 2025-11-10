@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\RecordCount;
 use App\Models\Domain;
 use App\Validators\DnsValidator;
 use Carbon\Carbon;
@@ -10,6 +11,8 @@ use Inertia\Inertia;
 
 class DomainController extends Controller
 {
+    use RecordCount;
+
     public function showDomain(string $domain)
     {
         $rules = array_merge(
@@ -32,6 +35,8 @@ class DomainController extends Controller
                 ];
             })->values();
 
+        $weeklyData = $this->GetWeekRecord($domain);
+
         return Inertia::render('domain.show', [
             'domain' => $domain->name,
             'records' => $summary,
@@ -40,9 +45,7 @@ class DomainController extends Controller
                 ['label' => 'Domain', 'url' => null],
                 ['label' => $domain->name, 'url' => null],
             ],
-            'routes' => [
-                'recordShow' => route('recordtype.show', ['domain' => ':domain', 'record' => ':record']),
-            ],
+            'weekly_data' => $weeklyData,
         ]);
     }
 
@@ -76,8 +79,8 @@ class DomainController extends Controller
 
         $items = $records->map(function ($event, $index) use ($recordType) {
             $record = $event->getRecords($recordType);
-            $record['last_seen'] = Carbon::parse($event->last_seen)->format('M d Y H:i:s');
-            $record['first_seen'] = Carbon::parse($event->first_seen)->format('M d Y H:i:s');
+            $record['last_seen'] = $event->last_seen ? Carbon::parse($event->last_seen)->format('M d Y H:i:s') : null;
+            $record['first_seen'] = $event->created_at ? Carbon::parse($event->created_at)->format('M d Y H:i:s') : null;
 
             return [
                 'id' => $index + 1,
@@ -106,9 +109,6 @@ class DomainController extends Controller
                 ['label' => $record, 'url' => null],
                 ['label' => 'Record Types', 'url' => route('recordtype.show', [$domain->name, $record])],
                 ['label' => $recordTypeName, 'url' => null],
-            ],
-            'routes' => [
-                'paginate' => route('recordtype.showRecords', ['domain' => $domain->name, 'record' => $record, 'recordtype' => $recordTypeName]),
             ],
         ]);
     }

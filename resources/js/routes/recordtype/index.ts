@@ -99,7 +99,7 @@ show.form = showForm
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 export const showRecords = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -114,7 +114,7 @@ showRecords.definition = {
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 showRecords.url = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions) => {
@@ -143,7 +143,7 @@ showRecords.url = (args: { domain: string | number, record: string | number, rec
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 showRecords.get = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -153,7 +153,7 @@ showRecords.get = (args: { domain: string | number, record: string | number, rec
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 showRecords.head = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -163,7 +163,7 @@ showRecords.head = (args: { domain: string | number, record: string | number, re
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 const showRecordsForm = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -173,7 +173,7 @@ const showRecordsForm = (args: { domain: string | number, record: string | numbe
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 showRecordsForm.get = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -183,7 +183,7 @@ showRecordsForm.get = (args: { domain: string | number, record: string | number,
 
 /**
 * @see \App\Http\Controllers\DomainController::showRecords
-* @see app/Http/Controllers/DomainController.php:49
+* @see app/Http/Controllers/DomainController.php:52
 * @route '/history/domain/{domain}/record/{record}/types/{recordtype}'
 */
 showRecordsForm.head = (args: { domain: string | number, record: string | number, recordtype: string | number } | [domain: string | number, record: string | number, recordtype: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

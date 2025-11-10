@@ -1,5 +1,6 @@
 import { HeroRecords} from '@/components/HeroHome';
 import  GetBreadcrumbs, { Breadcrumbs } from '@/components/Breadcrumbs';
+import { showRecords } from '@/actions/App/Http/Controllers/DomainController';
 
 type recordItem = {
     name: string;
@@ -11,19 +12,12 @@ export default function RecordTypes({
     domain,
     recordTypes,
     breadcrumbs,
-    routes,
 }: {
         name: string
         domain: string
         breadcrumbs: Breadcrumbs[]
         recordTypes: recordItem[]
-        routes: Record<string, string>
     }) {
-
-    const buildUrl = (recordTypeName: string) => {
-        return routes.records
-            .replace(':recordtype', recordTypeName)
-    };
 
     return (
         <HeroRecords>
@@ -33,7 +27,7 @@ export default function RecordTypes({
             <div className="relative flex flex-col w-full max-w-100 text-gray-700 bg-blue-500/20 shadow-md mx-auto rounded-xl bg-clip-border">
                 <nav className="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base text-white font-normal text-blue-gray-700">
                     {recordTypes.map(({hostname, type, count}) => (
-                        <a key={type} href={buildUrl(type)}>
+                        <a key={type} href={showRecords([domain, name, type]).url}>
                             <div
                                 role="button"
                                 className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start 

@@ -19,6 +19,10 @@ class Record extends Model
         'retry', 'expire', 'minimum_ttl', 'last_seen',
     ];
 
+    protected $casts = [
+        'last_seen' => 'datetime',
+    ];
+
     public function domain(): BelongsTo
     {
         return $this->belongsTo(Domain::class);

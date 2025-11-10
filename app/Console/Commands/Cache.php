@@ -31,4 +31,3 @@ class Cache extends Command
         return Command::SUCCESS;
     }
 }
-

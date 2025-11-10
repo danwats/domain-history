@@ -26,9 +26,6 @@ class SearchController extends Controller
             return Inertia::render('search', [
                 'query' => $query,
                 'results' => $results,
-                'routes' => [
-                    'domain' => route('domain.show', ['domain' => ':domain']),
-                ],
             ]);
         }
 

@@ -2,6 +2,7 @@ import GetBreadcrumbs, { Breadcrumbs } from '@/components/Breadcrumbs';
 import { HeroRecords} from '@/components/HeroHome';
 import { ShowRecordType } from '@/components/RecordTypes';
 import { router } from '@inertiajs/react';
+import { showRecords } from '@/actions/App/Http/Controllers/DomainController';
 
 export default function RecordTypes({
     domain,
@@ -22,11 +23,12 @@ export default function RecordTypes({
         routes: Record<string, string>
     }) {
 
-    const handlePageChange = (page: number) => {
-        router.get(routes.paginate + '?page=', { page }, {
-            preserveState: true,
-            preserveScroll: false,
-        });
+    const handlePageChange = (domain: string, recordName: string, recordType: string, page: number) => {
+        router.get(
+            showRecords([domain, recordName, recordType], {
+                query: { page },
+            }).url
+        );
     };
 
     return (
@@ -52,7 +54,7 @@ export default function RecordTypes({
 
                     <div className="pagination-buttons">
                         <button 
-                            onClick={() => handlePageChange(paginate.currentPage - 1)}
+                            onClick={() => handlePageChange(domain, recordName, recordTypeName, paginate.currentPage - 1)}
                             disabled={paginate.currentPage === 1}
                             className={paginate.currentPage === 1 ? "cursor-not-allowed" : "cursor-pointer underline"}
                         >
@@ -62,7 +64,7 @@ export default function RecordTypes({
                         <span> Page {paginate.currentPage} of {paginate.lastPage} </span>
 
                         <button 
-                            onClick={() => handlePageChange(paginate.currentPage + 1)}
+                            onClick={() => handlePageChange(domain, recordName, recordTypeName, paginate.currentPage + 1)}
                             disabled={paginate.currentPage === paginate.lastPage}
                             className={paginate.currentPage === paginate.lastPage ? "cursor-not-allowed" : "cursor-pointer underline"}
                         >

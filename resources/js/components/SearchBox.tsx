@@ -1,13 +1,18 @@
 import { router } from '@inertiajs/react';
 import { searchClass,searchButtonClass } from '@/components/HeroHomeVars';
+import { index } from '@/actions/App/Http/Controllers/SearchController';
 
 export default function SearchBox() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const query = formData.get('query') as string;
 
-        router.get('search', { query }); 
+        router.get(
+            index({
+                query: {
+                    query: formData.get('query') as string
+                }
+            }).url);
     };
 
     return (
